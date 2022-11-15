@@ -22,6 +22,7 @@ class ControllerBase extends Controller
             }
         }
 
+
         if ($this->session->has('auth')) {
 
            

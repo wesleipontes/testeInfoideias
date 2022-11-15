@@ -17,20 +17,41 @@
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="form-group col-sm-12">
-                                                <p><strong>Data de Criação:</strong> 22/07/2017 11:18:22</p>
-                                                <p><strong>Data da Última Atualização:</strong> 22/07/2017 11:18:22</p>
+                                                <p><strong>Data de Criação:</strong> {{ dataCadastro }}</p>
+                                                <p><strong>Data da Última Atualização:</strong> {{data_ultima_atualizacao}}</p>
                                             </div>
                                         </div>
                                         <div class="row">
+                                               {{ hidden_field("id","class": 'form-control') }}
+
                                             <div class="form-group col-sm-12">
                                                 <label for ="Titulo">Título <span class="error">(*)<span></label>
-                                                <input type="text" value="Texto 1" width='100%' class= "form-control">
+                                                {{ text_field("titulo","maxlength": '255', "width": '100%',"required": 'required', "class": 'form-control') }}
                                             </div>
                                         </div>
+                                          <div class="row">
+                                              <div class="form-group col-sm-12">
+                                                  <label for ="Texto">Categorias</label>
+                                                 {{select('categoria','class':'form-control',
+                                                      listaCategoria
+                                                 )}}
+                                              </div>
+                                          </div>
+                                          <div class="row">
+                                             <div class="form-group col-sm-12">
+                                             <label for ="Texto">Categorias</label>
+                                                	{% for item in categoriasSelecionadas %}
+                                                        <div class="btn btn-success">{{item.titulo}}</div>
+                                                    {% endfor %}
+
+
+
+                                             </div>
+                                          </div>
                                         <div class="row">
                                             <div class="form-group col-sm-12">
                                                 <label for ="Texto">Texto</label>
-                                                <textarea class= "form-control">Texto 1</textarea>
+                                                {{ text_area("texto", "class": 'form-control tinymce-editor') }}
                                             </div>
                                         </div>
                                     </div>{#/.panel-body#}

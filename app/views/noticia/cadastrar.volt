@@ -22,6 +22,14 @@
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-sm-12">
+                                                <label for ="Texto">Categorias</label>
+                                               {{select('categoria','class':'form-control',
+                                                    listaCategoria
+                                               )}}
+                                            </div>
+                                        </div>
+                                         <div class="row">
+                                            <div class="form-group col-sm-12">
                                                 <label for ="Texto">Texto</label>
                                                 {{ text_area("texto", "class": 'form-control tinymce-editor') }}
                                             </div>
