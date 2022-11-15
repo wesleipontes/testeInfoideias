@@ -54,6 +54,7 @@
                                                 {{ text_area("texto", "class": 'form-control tinymce-editor') }}
                                             </div>
                                         </div>
+
                                     </div>{#/.panel-body#}
                                 </div>{#/.panel#}
                                 <div class="row" style="text-align:right;">
