@@ -41,11 +41,8 @@
                                              <div class="form-group col-sm-12">
                                              <label for ="Texto">Categorias</label>
                                                 	{% for item in categoriasSelecionadas %}
-                                                        <div class="btn btn-success">{{item.titulo}}</div>
+                                                        <div class="btn btn-success ">{{item.titulo}}</div>
                                                     {% endfor %}
-
-
-
                                              </div>
                                           </div>
                                         <div class="row">
@@ -54,7 +51,6 @@
                                                 {{ text_area("texto", "class": 'form-control tinymce-editor') }}
                                             </div>
                                         </div>
-
                                     </div>{#/.panel-body#}
                                 </div>{#/.panel#}
                                 <div class="row" style="text-align:right;">

@@ -19,15 +19,23 @@
                                                 <label for ="Titulo">Título <span class="error">(*)<span></label>
                                                 {{ text_field("titulo","maxlength": '255', "width": '100%',"required": 'required', "class": 'form-control') }}
                                             </div>
+
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-sm-12">
                                                 <label for ="Texto">Categorias</label>
-                                               {{select('categoria','class':'form-control',
-                                                    listaCategoria
+                                               {{select('categoria', 'class':'select-addCategoria form-control',
+                                                   listaCategoria
                                                )}}
+                                                <small id="helpId" class="text-muted">Aperte enter para adicionar mais de uma categoria</small>
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="addCate form-group col-sm-12">
+
+                                            </div>
+                                        </div>
+
                                          <div class="row">
                                             <div class="form-group col-sm-12">
                                                 <label for ="Texto">Texto</label>
@@ -54,9 +62,26 @@
     {%  block extrafooter %}
         
         <script>
+
+
+
             $(document).ready(function(){
 
 
             });
         </script>
     {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -73,6 +73,7 @@ class NoticiaController extends ControllerBase
                     $this->dispatcher->forward(['controller'=>'Noticia', 'action'=>'cadastrar']);
                     return;
                 }
+
                     $noticiaCategoria = new NoticiaCategoria();
                     $noticiaCategoria->categoria_id = $this->request->getPost('categoria');
                     $noticiaCategoria->noticia_id=$noticia->id;

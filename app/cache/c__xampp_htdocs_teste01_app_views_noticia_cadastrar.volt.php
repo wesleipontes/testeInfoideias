@@ -102,13 +102,21 @@
                                                 <label for ="Titulo">Título <span class="error">(*)<span></label>
                                                 <?= $this->tag->textField(['titulo', 'maxlength' => '255', 'width' => '100%', 'required' => 'required', 'class' => 'form-control']) ?>
                                             </div>
+
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-sm-12">
                                                 <label for ="Texto">Categorias</label>
-                                               <?= $this->tag->select(['categoria', 'class' => 'form-control', $listaCategoria]) ?>
+                                               <?= $this->tag->select(['categoria', 'class' => 'select-addCategoria form-control', $listaCategoria]) ?>
+                                                <small id="helpId" class="text-muted">Aperte enter para adicionar mais de uma categoria</small>
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="addCate form-group col-sm-12">
+
+                                            </div>
+                                        </div>
+
                                          <div class="row">
                                             <div class="form-group col-sm-12">
                                                 <label for ="Texto">Texto</label>
@@ -161,6 +169,9 @@
 		
         
         <script>
+
+
+
             $(document).ready(function(){
 
 

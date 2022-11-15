@@ -122,11 +122,8 @@
                                              <div class="form-group col-sm-12">
                                              <label for ="Texto">Categorias</label>
                                                 	<?php foreach ($categoriasSelecionadas as $item) { ?>
-                                                        <div class="btn btn-success"><?= $item->titulo ?></div>
+                                                        <div class="btn btn-success "><?= $item->titulo ?></div>
                                                     <?php } ?>
-
-
-
                                              </div>
                                           </div>
                                         <div class="row">
