@@ -100,7 +100,7 @@
                                         <div class="row">
                                             <div class="form-group col-sm-12">
                                                 <label for ="Titulo">Título <span class="error">(*)<span></label>
-                                                <?= $this->tag->textField(['titulo', 'width' => '100%', 'class' => 'form-control']) ?>
+                                                <?= $this->tag->textField(['titulo', 'maxlength' => '255', 'width' => '100%', 'required' => 'required', 'class' => 'form-control']) ?>
                                             </div>
                                         </div>
                                         <div class="row">
