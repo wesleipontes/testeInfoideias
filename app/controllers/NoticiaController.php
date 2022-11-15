@@ -59,6 +59,7 @@ class NoticiaController extends ControllerBase
 
     public function salvarAction()
     {
+
         if($this->request->isPost()){
             if($this->request->getPost('id')){
                 $noticia = Noticia::findFirst($this->request->getPost('id'));
@@ -74,10 +75,7 @@ class NoticiaController extends ControllerBase
                     return;
                 }
 
-                    $noticiaCategoria = new NoticiaCategoria();
-                    $noticiaCategoria->categoria_id = $this->request->getPost('categoria');
-                    $noticiaCategoria->noticia_id=$noticia->id;
-                    $noticiaCategoria->save();
+                    
                 $this->flash->success('Noticia Atualizada Com Sucesso!');
                 $this->dispatcher->forward(['controller'=>'Noticia', 'action'=>'lista']);
 
