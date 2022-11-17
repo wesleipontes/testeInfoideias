@@ -38,10 +38,11 @@
                                               </div>
                                           </div>
                                           <div class="row">
-                                             <div class="form-group col-sm-12">
-                                             <label for ="Texto">Categorias</label>
+                                             <div class="addCate form-group col-sm-12">
                                                 	{% for item in categoriasSelecionadas %}
-                                                        <div class="btn btn-success ">{{item.titulo}}</div>
+                                                        <div onclick="remove(event)" class=" btn btn-success ">{{item.titulo}}
+                                                            <input type="hidden" id="categoriaSelecionada" name="categoriaSelecionada[]" value="{{item.titulo}}">
+                                                        </div>
                                                     {% endfor %}
                                              </div>
                                           </div>
@@ -71,6 +72,24 @@
     {%  block extrafooter %}
         
         <script>
+
+        const select = document.querySelector('.select-addCategoria');
+                const option = document.querySelector('option');
+                const areaCategoria = document.querySelector('.addCate');
+
+                function addCategoria(e){
+                  if(e.key == 'Enter'){
+                    var categoria_id = select.value;
+                    var opcaoTexto = select.options[select.selectedIndex].text;
+                    areaCategoria.innerHTML += ' <div onclick="remove(event)" id="ctg'+categoria_id+'" class="btn border-radius btn-success"><input type="hidden" id="categoriaSelecionada" name="categoriaSelecionada[]" value="'+categoria_id+'"> '+opcaoTexto+'</div> '
+                  }
+                }
+                select.addEventListener('keydown',addCategoria);
+
+                function remove(e) {
+                  var element = e.target;
+                  element.remove();
+                }
             $(document).ready(function(){
 
 
