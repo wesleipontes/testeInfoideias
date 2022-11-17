@@ -12,25 +12,6 @@ $('#btnToggle').click(function(){
 });
 });
 // elementos
-const select = document.querySelector('.select-addCategoria');
-const option = document.querySelector('option');
-const areaCategoria = document.querySelector('.addCate');
-
-function addCategoria(e){
-  if(e.key == 'Enter'){
-    var categoria_id = select.value;
-    var opcaoTexto = select.options[select.selectedIndex].text;
-    areaCategoria.innerHTML += '<input type="hidden" id="'+categoria_id+'"> <div onclick="remove(event)" id="ctg'+categoria_id+'" class="btn border-radius btn-success">'+opcaoTexto+'</div> '
-  }
-}
-select.addEventListener('keydown',addCategoria);
-
-function remove(e) {
-  var element = e.target;
-  element.remove();
-}
-
-
 
 
 

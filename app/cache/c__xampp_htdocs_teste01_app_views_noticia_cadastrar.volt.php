@@ -169,6 +169,24 @@
 		
         
         <script>
+        const select = document.querySelector('.select-addCategoria');
+        const option = document.querySelector('option');
+        const areaCategoria = document.querySelector('.addCate');
+
+        function addCategoria(e){
+          if(e.key == 'Enter'){
+            var categoria_id = select.value;
+            var opcaoTexto = select.options[select.selectedIndex].text;
+            areaCategoria.innerHTML += ' <div onclick="remove(event)" id="ctg'+categoria_id+'" class="btn border-radius btn-success"><input type="hidden" id="categoriaSelecionada" name="categoriaSelecionada[]" value="'+categoria_id+'"> '+opcaoTexto+'</div> '
+          }
+        }
+        select.addEventListener('keydown',addCategoria);
+
+        function remove(e) {
+          var element = e.target;
+          element.remove();
+        }
+
 
 
 

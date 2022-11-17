@@ -61,6 +61,7 @@ class NoticiaController extends ControllerBase
     {
 
         if($this->request->isPost()){
+
             if($this->request->getPost('id')){
                 $noticia = Noticia::findFirst($this->request->getPost('id'));
                 $noticia->titulo = $this->request->getPost('titulo');
@@ -75,7 +76,7 @@ class NoticiaController extends ControllerBase
                     return;
                 }
 
-                    
+
                 $this->flash->success('Noticia Atualizada Com Sucesso!');
                 $this->dispatcher->forward(['controller'=>'Noticia', 'action'=>'lista']);
 
@@ -94,10 +95,16 @@ class NoticiaController extends ControllerBase
                     $this->dispatcher->forward(['controller'=>'Noticia', 'action'=>'cadastrar']);
                     return;
                 }
-                $noticiaCategoria = new NoticiaCategoria();
-                $noticiaCategoria->categoria_id = $this->request->getPost('categoria');
-                $noticiaCategoria->noticia_id=$noticia->id;
-                $noticiaCategoria->save();
+
+
+                $categoriasSelecionada= $this->request->getPost('categoriaSelecionada');
+                foreach ($categoriasSelecionada as $item){
+                    $noticiaCategoria = new NoticiaCategoria();
+                    $noticiaCategoria->categoria_id = $item;
+                    $noticiaCategoria->noticia_id = $noticia->id;
+                    $noticiaCategoria->save();
+                }
+
                 //return print_r($noticia);
                 $this->flash->success('Noticia Salva Com Sucesso!');
                 $this->dispatcher->forward(['controller'=>'Noticia', 'action'=>'lista']);
