@@ -23,8 +23,10 @@ class Categoria extends \Phalcon\Mvc\Model
         $this->setSchema("phalcont_teste01");
         $this->setSource("Categoria");
         $this->hasManyToMany('id','NoticiaCategoria','categoria_id',
-        'Noticia_id','Noticia','id');
-        //$this->belongsTo('categoria_id', 'Categoria', 'id', ['alias' => 'Categoria']);
+        'Noticia_id','Noticia','id',['alias' => 'Noticia']);
+
+        //$this->hasMany('id','NoticiaCategoria','id_categoria', ['alias'=>'noticiaCategoria']);
+        //$this->belongsTo('id', 'NoticiaCAtegoria', 'id_categoria', ['alias' => '']);
     }
 
     /**

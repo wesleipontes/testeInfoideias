@@ -22,7 +22,7 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                               {{ hidden_field("id","class": 'form-control') }}
+                                               {{ hidden_field("id","class": 'idNoticia form-control') }}
 
                                             <div class="form-group col-sm-12">
                                                 <label for ="Titulo">Título <span class="error">(*)<span></label>
@@ -32,7 +32,7 @@
                                           <div class="row">
                                               <div class="form-group col-sm-12">
                                                   <label for ="Texto">Categorias</label>
-                                                 {{select('categoria','class':'form-control',
+                                                 {{select('categoria','class':'select-addCategoria form-control',
                                                       listaCategoria
                                                  )}}
                                               </div>
@@ -40,9 +40,7 @@
                                           <div class="row">
                                              <div class="addCate form-group col-sm-12">
                                                 	{% for item in categoriasSelecionadas %}
-                                                        <div onclick="remove(event)" class=" btn btn-success ">{{item.titulo}}
-                                                            <input type="hidden" id="categoriaSelecionada" name="categoriaSelecionada[]" value="{{item.titulo}}">
-                                                        </div>
+                                                	    <div onclick="apagar(event)" id="{{item.id}}" class=" btn btn-success "> {{item.titulo}} </div>
                                                     {% endfor %}
                                              </div>
                                           </div>
@@ -72,8 +70,7 @@
     {%  block extrafooter %}
         
         <script>
-
-        const select = document.querySelector('.select-addCategoria');
+                const select = document.querySelector('.select-addCategoria');
                 const option = document.querySelector('option');
                 const areaCategoria = document.querySelector('.addCate');
 
@@ -81,7 +78,7 @@
                   if(e.key == 'Enter'){
                     var categoria_id = select.value;
                     var opcaoTexto = select.options[select.selectedIndex].text;
-                    areaCategoria.innerHTML += ' <div onclick="remove(event)" id="ctg'+categoria_id+'" class="btn border-radius btn-success"><input type="hidden" id="categoriaSelecionada" name="categoriaSelecionada[]" value="'+categoria_id+'"> '+opcaoTexto+'</div> '
+                    areaCategoria.innerHTML += ' <div onclick="remove(event)" id="ctg'+categoria_id+'" class="btn btn-success"><input type="hidden" id="categoriaSelecionada" name="categoriaSelecionada[]" value="'+categoria_id+'"> '+opcaoTexto+'</div> '
                   }
                 }
                 select.addEventListener('keydown',addCategoria);
@@ -90,9 +87,69 @@
                   var element = e.target;
                   element.remove();
                 }
+                async function apagar(e){
+                  let idCategoria= e.target.id;
+                  let Noticia = document.querySelector('.idNoticia');
+                  let idNoticia = Noticia.value;
+                  let url = '{{ url(['for':'noticia.excluir.categoria']) }}';
+
+                        let del = await fetch(url ,{
+                            method: 'POST',
+                            body: JSON.stringify({
+                                categoria_id : idCategoria,
+                                noticia_id : idNoticia
+                            }),
+                        });
+                        e.target.remove();//removendo valor da tela
+
+                }
+
+
             $(document).ready(function(){
 
 
             });
         </script>
     {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

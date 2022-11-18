@@ -75,6 +75,13 @@ class NoticiaController extends ControllerBase
                     $this->dispatcher->forward(['controller'=>'Noticia', 'action'=>'cadastrar']);
                     return;
                 }
+                $categoriasSelecionada= $this->request->getPost('categoriaSelecionada');
+                foreach ($categoriasSelecionada as $item){
+                    $noticiaCategoria = new NoticiaCategoria();
+                    $noticiaCategoria->categoria_id = $item;
+                    $noticiaCategoria->noticia_id = $noticia->id;
+                    $noticiaCategoria->save();
+                }
 
 
                 $this->flash->success('Noticia Atualizada Com Sucesso!');
@@ -121,6 +128,22 @@ class NoticiaController extends ControllerBase
              $noticia->delete();
          }
         return $this->response->redirect(array('for' => 'noticia.lista'));
+
+     }
+     public function excluirCategoriaAction(){
+             $categoria_id= $this->request->getJsonRawBody()->categoria_id;
+             $noticia_id = $this->request->getJsonRawBody()->noticia_id;
+
+             $noticiaCategoria = NoticiaCategoria::findFirst([
+                 'noticia_id ='.$noticia_id.' AND categoria_id='.$categoria_id
+             ]);
+             if($noticiaCategoria->delete()){
+                 return [$this->request->getJsonRawBody()];
+             }else {
+                 return ['success' => false];
+             }
+
+
      }
 
 }
