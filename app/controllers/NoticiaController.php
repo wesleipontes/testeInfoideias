@@ -88,7 +88,8 @@ class NoticiaController extends ControllerBase
                 $this->dispatcher->forward(['controller'=>'Noticia', 'action'=>'lista']);
 
 
-            }else{
+            }elseif($this->request->getPost('titulo')){
+
 
                 $noticia = new Noticia();
                 $noticia->titulo= $this->request->getPost('titulo');
@@ -112,12 +113,13 @@ class NoticiaController extends ControllerBase
                     $noticiaCategoria->save();
                 }
 
-                //return print_r($noticia);
                 $this->flash->success('Noticia Salva Com Sucesso!');
                 $this->dispatcher->forward(['controller'=>'Noticia', 'action'=>'lista']);
             }
         }
+
         $this->dispatcher->forward(['controller'=>'Noticia', 'action'=>'lista']);
+
         //return $this->response->redirect(array('for' => 'noticia.lista'));
     }
 
@@ -125,12 +127,13 @@ class NoticiaController extends ControllerBase
      {
          $noticia = Noticia::findFirst($id);
          if($noticia){
+             $this->flash->success('Notícia excluida com sucesso!');
              $noticia->delete();
          }
         return $this->response->redirect(array('for' => 'noticia.lista'));
 
      }
-     public function excluirCategoriaAction(){
+     public function excluirCategoriaAction(){  //exclui categoria via javascript
              $categoria_id= $this->request->getJsonRawBody()->categoria_id;
              $noticia_id = $this->request->getJsonRawBody()->noticia_id;
 

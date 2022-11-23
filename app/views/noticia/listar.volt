@@ -31,6 +31,7 @@
 									<thead>
 										<tr>
 											<td>Cod</td>
+											<td>publicado</td>
 											<td>Titulo</td>
 											<td>Texto</td>
 											<td>Ações</td>
@@ -40,12 +41,13 @@
 									{% for noticia in noticias %}
 
 										<tr>
-                                            <td><a href="#">{{noticia.id}}</a></td>
+                                            <td><a class="idNoticia" href="#">{{noticia.id}}</a></td>
+                                            <td><input onchange="publicacao(this)" class="form-check-input publicado" id="{{noticia.id}}" type="checkbox" data-id="{{noticia.publicado}}"></td>
                                             <td class="titulo"> {{noticia.titulo}}</td>
                                             <td class="text-center">{{noticia.texto}}</td>
                                             <td>
-                                                <a href="{{ url(['for':'noticia.editar',"id":noticia.id])}}"><span class="glyphicon glyphicon-pencil"></span></a>
-                                                <a href="{{ url(['for':'noticia.excluir',"id":noticia.id])}}"><span class="glyphicon glyphicon-remove-sign"></span></a>
+                                                <a href="{{ url(['for':'noticia.editar','id':noticia.id])}}"><span class="glyphicon glyphicon-pencil"></span></a>
+                                                <a href="{{ url(['for':'noticia.excluir','id':noticia.id])}}"><span class="glyphicon glyphicon-remove-sign"></span></a>
                                             </td>
 										</tr>
 									{% endfor %}
@@ -64,6 +66,24 @@
         
 
         <script>
+        const checkbox = document.querySelector('.publicado');
+
+        async function publicacao(element){
+            let status = element.checked;
+            let idNoticia = element.id
+            let publicado = element.dataset.id;
+               let url = '{{ url(['for':'noticia.salvar']) }}';
+                let publicar = await fetch(url ,{
+                    method: 'POST',
+                    body: JSON.stringify({
+                        publicado : publicado,
+                        idNoticia : idNoticia
+                    }),
+                });
+                     result = await publicar.json();
+
+        }
+
 
             $(document).ready(function(){
 
